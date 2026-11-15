@@ -266,7 +266,8 @@ def page_eda():
 
     with right:
         t = state_table(df).dropna(subset=["median_income", "price_per_sqft"])
-        rho = t["median_income"].corr(t["price_per_sqft"], method="spearman")
+        # Spearman = Pearson correlation of the ranks (pandas' own method="spearman" needs scipy, which is not installed on Streamlit Cloud)
+        rho = t["median_income"].rank().corr(t["price_per_sqft"].rank())
         st.caption(f"One dot = one state (median price per sqft vs. the state's median household income). "
                    f"Spearman ρ = {rho:.2f}: richer states tend to be more expensive per sqft.")
         slope, intercept = np.polyfit(t["median_income"], t["price_per_sqft"], 1)
@@ -417,7 +418,7 @@ def factor_table(_d):
     factors = ["price", "house_size", "bed", "bath", "acre_lot", "median_income", "crime_rate", "flood_risk"]
     listing_r = _d[["price_per_sqft"] + factors].corr()["price_per_sqft"]
     st_tab = (_d.groupby("state")[["price_per_sqft"] + factors].median())
-    state_rho = st_tab.corr(method="spearman")["price_per_sqft"]
+    state_rho = st_tab.rank().corr()["price_per_sqft"]  # Spearman = Pearson on ranks (no scipy needed)
     rows = []
     for f in factors:
         rows.append({"factor": f, "r": listing_r[f], "rho": state_rho[f]})
