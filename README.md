@@ -4,7 +4,7 @@ An interactive Streamlit app that answers one question:
 
 > **In which US state is it more advantageous to buy a home, taking into account the price per square foot, the income level, the crime rate and the flood risk?**
 
-**Live app:** real-estate-explorer-gumtipivqjstv59q3qb7xq
+**Live app:** [real-estate-explorer-gumtipivqjstv59q3qb7xq.streamlit.app](https://real-estate-explorer-gumtipivqjstv59q3qb7xq.streamlit.app)
 
 The app has four pages: **Home** (problem, data sources, cleaning, data preview), **EDA** (histogram, scatter plot, correlation heatmap, bedrooms × bathrooms heatmap), **Maps** (state maps and a regional comparison tool) and **Insights** (cheapest and most expensive states, what influences price per sqft, trade-offs, a multi-factor shortlist).
 

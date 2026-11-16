@@ -151,6 +151,7 @@ for j in range(5):
 ax.set_title('Listings by lot size (before the acre_lot filter)', pad=10)
 save_fig("acre_lot_table")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Шаг 6. Участок: оставляем до 10 акров. Всё, что больше, это уже ферма/ранчо, а не типичный жилой дом.
 # Значения больше 1000 акров почти наверняка ошибка (вероятно, площадь вписали в кв. футах).
@@ -383,6 +384,7 @@ for i, feature in enumerate(num_features):
 plt.tight_layout()
 save_fig("distributions")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Create boxplots for numerical variables
 fig, ax = plt.subplots(3, 3, figsize=(18, 20))
@@ -395,6 +397,7 @@ for i, feature in enumerate(num_features):
 plt.tight_layout()
 save_fig("boxplots")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Define categorical features for visualization
 # (status убрали: распределение for_sale/sold мало что говорит)
@@ -414,27 +417,32 @@ for a, feature in zip(axes, cat_features):
 plt.tight_layout(pad=2)
 save_fig("categorical_distributions")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Scatter plot for numerical vs. numerical
 sns.scatterplot(data=dsc, x='price', y='house_size')
 plt.title("house_size vs. price")
 save_fig("house_size_vs_price")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 sns.scatterplot(data=dsc, x='bed', y='price')
 plt.title("bed vs. price")
 save_fig("bed_vs_price")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 sns.scatterplot(data=dsc, x='acre_lot', y='price')
 plt.title("acre_lot vs. price")
 save_fig("acre_lot_vs_price")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 sns.scatterplot(data=dsc, x='acre_lot', y='house_size')
 plt.title("acre_lot vs. house_size")
 save_fig("acre_lot_vs_house_size")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Scatterplot: связь house_size с количеством спален и ванных (слева bed, справа bath).
 # Точек больше миллиона, поэтому рисуем случайную выборку 100 000 строк и делаем точки полупрозрачными.
@@ -449,6 +457,7 @@ for a, col in zip(ax, ['bed', 'bath']):
 plt.tight_layout()
 save_fig("bed_bath_vs_house_size")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Scatterplot: price_per_sqft против количества спален и ванных. Красная линия это медиана по каждому значению.
 # price_per_sqft честнее, чем price: цена растёт вместе с площадью, а цена за фут убирает эту зависимость.
@@ -465,6 +474,7 @@ for a, col in zip(ax, ['bed', 'bath']):
 plt.tight_layout()
 save_fig("bed_bath_vs_price_per_sqft")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Словарь: полные названия → коды штатов (нужен для подписей на графиках и для карт ниже)
 state_abbrev = {
@@ -494,6 +504,7 @@ plt.xticks(rotation=90)
 plt.tight_layout()
 save_fig("ppsf_by_state_boxplot")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # 2. price_per_sqft vs. median_income: одна точка = один штат (медиана price_per_sqft и доход штата).
 state_stats = dsc.groupby('state').agg(price_per_sqft=('price_per_sqft', 'median'),
@@ -510,6 +521,7 @@ plt.title(f"State median income vs. median price_per_sqft (Spearman = {rho:.2f})
 plt.tight_layout()
 save_fig("ppsf_vs_income_by_state")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # 3. Тепловая карта: bed x bath, цвет и число в клетке = медиана price_per_sqft.
 # Клетки, где меньше 30 объявлений, скрываем: медиана по нескольким объектам ненадёжна.
@@ -527,16 +539,19 @@ plt.title("Median price_per_sqft by bed and bath (cells with < 30 listings hidde
 plt.tight_layout()
 save_fig("ppsf_bed_bath_heatmap")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 sns.scatterplot(data=dsc, x='median_income', y='price')
 plt.title("income vs. price")
 save_fig("income_vs_price")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 sns.scatterplot(data=dsc, x='crime_rate', y='price')
 plt.title("crime_rate vs. price")
 save_fig("crime_rate_vs_price")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Box plot for numerical vs. categorical
 sns.boxplot(data=dsc, x='state', y='price')
@@ -544,6 +559,7 @@ plt.title("Boxplot: price by state")
 plt.xticks(rotation=90)
 save_fig("price_by_state_boxplot")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Create a correlation heatmap
 # brokered_by и zip_code числовые, но это идентификаторы, а не признаки, поэтому в матрицу их не берём
@@ -553,6 +569,7 @@ sns.heatmap(dsc.select_dtypes(include=['number']).drop(columns=['brokered_by', '
 plt.title("Feature Correlation Heatmap")
 save_fig("correlation_heatmap")
 plt.show()
+plt.close('all')  # закрываем рисунок, чтобы следующий график не рисовался поверх него (важно при запуске без окон)
 
 # Create a price map
 import plotly.io as pio

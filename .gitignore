@@ -1,0 +1,19 @@
+# Raw and intermediate data: too large for GitHub (100 MB limit per file).
+# The raw file comes from Kaggle; dsc.csv.gz (the cleaned data) IS committed.
+realtor-data.csv
+dsc.csv
+
+# Environments and tools
+.venv/
+venv/
+Git/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Large or personal files that are not part of the app
+*.mp4
+*.zip
+*.pdf
+*_map.html
+Figure *.png
