@@ -59,8 +59,8 @@ if not DATA_PATH.exists():
     st.stop()
 
 with st.sidebar:
-    st.header("⚙️ Options")
-    page = st.radio("📂 Navigation", ["Home", "EDA", "Maps", "Insights"], index=0)
+    st.header("📂 Navigation")
+    page = st.radio(["Home", "EDA", "Maps", "Insights"], index=0)
 
 df = load_csv(DATA_PATH)
 
